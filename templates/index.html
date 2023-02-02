@@ -2,26 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>대동0ㅕ지도</title>
-    <style>
-        nav {
-          display: flex;
+    <title>대동0ㅕ지도5</title>
+    <style>/* CSS for Vertical Menu */
+        #menu {
+          width: 200px;
+          float: left;
         }
 
-        nav ul {
-          display: flex;
-          list-style-type: none;
+        #menu ul {
+          list-style: none;
           margin: 0;
           padding: 0;
         }
 
-        nav li {
-          margin-right: 10px;
+        #menu li {
+          background-color: #f2f2f2;
+          margin: 1px 0;
         }
 
-        nav a {
+        #menu a {
+          display: block;
+          padding: 10px 20px;
+          font-size: 18px;
+          font-weight: bold;
+          color: #333;
           text-decoration: none;
-          color: black;
+        }
+
+        #menu a:hover {
+          background-color: #ccc;
         }
 
         #mapwrap{position:relative;overflow:hidden;}
@@ -37,13 +46,14 @@
 </head>
 <body>
     <!-- HTML for Vertical Menu -->
-    <nav>
+    <div id="menu">
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact Us</a></li>
       </ul>
-    </nav>
+    </div>
     <div id="mapwrap">
     <!-- 지도가 표시될 div -->
     <div id="map" style="width:100%;height:1000px;"></div>
