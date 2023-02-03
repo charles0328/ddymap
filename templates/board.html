@@ -117,6 +117,30 @@
         function close_box() {
             $('#post-box').hide()
         }
+
+                function fill_post() {
+            let newNickname = $('#nickname').val()
+            if (newNickname == '') {
+                alert('닉네임을 입력하세요');
+                return;
+            }
+            let newPasssword = $('#password').val()
+            if (newPasssword == '') {
+                alert('비밀번호를 입력하세요');
+                return;
+            }
+            let newTitle = $('#title').val()
+            if (newTitle == '') {
+                alert('제목을 입력하세요');
+                return;
+            }
+            let newContent = $('#content').val()
+            if (newContent == '') {
+                alert('내용을 입력하세요');
+                return;
+            }
+        }
+
     </script>
 </head>
 <body>
