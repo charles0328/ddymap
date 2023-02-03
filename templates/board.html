@@ -161,73 +161,73 @@
     </div>
 </nav>
 
-<div class="mytitle">
-    <h1 class="mypage">게시판</h1>
-</div>
-<div class="mymessage">
-    <h3>제로 웨이스트를 실천하는 나만의 방법을 알려주세요!</h3>
-    <p></p>
-    <h5>🔊 이제는 일상이 된 나만의 팁을 공유해주세요</h5>
-    <button onclick="open_box()">글쓰기</button>
-</div>
-<div class="mypost" id="post-box">
-    <div class="row g-3">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="닉네임" aria-label="First name">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="비밀번호" aria-label="Last name" style="width: 70%">
-        </div>
+    <div class="mytitle">
+        <h1 class="mypage">게시판</h1>
+    </div>
+    <div class="mymessage">
+        <h3>제로 웨이스트를 실천하는 나만의 방법을 알려주세요!</h3>
         <p></p>
+        <h5>🔊 이제는 일상이 된 나만의 팁을 공유해주세요</h5>
+        <button onclick="open_box()">글쓰기</button>
     </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">제목</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="height: 10px"></textarea>
+    <div class="mypost" id="post-box">
+        <div class="row g-3">
+            <div class="col">
+                <input id="nickname" type="text" class="form-control" placeholder="닉네임" aria-label="First name">
+            </div>
+            <div class="col">
+                <input id="password" type="text" class="form-control" placeholder="비밀번호" aria-label="Last name" style="width: 70%">
+            </div>
+            <p> </p>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">제목</label>
+            <textarea class="form-control" id="title" rows="3" style="height: 10px"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+            <textarea class="form-control" id="content" rows="3"></textarea>
+        </div>
+        <div class="mybtns">
+            <button type="button" class="btn btn-dark" onclick="fill_post();_box()">기록하기</button>
+            <button type="button" class="btn btn-outline-dark" onclick="close_box();_box()">닫기</button>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="mybtns">
-        <button type="button" class="btn btn-dark" onclick="close_box();_box()">기록하기</button>
-        <button type="button" class="btn btn-outline-dark" onclick="close_box();_box()">닫기</button>
-    </div>
-</div>
-<div class="allpost">
+    <div class="allpost">
     <p>전체 게시글 (nn)</p>
     <hr align="left" style="border: 1.5px;">
-</div>
-<div class="mycard">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">닉네임</div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용</p>
+    </div>
+    <div class="mycard">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" id="">
+                <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">닉네임</div>
+                    <div class="card-body text-secondary">
+                        <h5 class="card-title">제목</h5>
+                        <p class="card-text" style="height: 100px">내용</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">닉네임</div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용을 입력하세요.</p>
+            <div class="col">
+                <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">닉네임</div>
+                    <div class="card-body text-secondary">
+                        <h5 class="card-title">제목</h5>
+                        <p class="card-text" style="height: 100px">내용을 입력하세요.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">닉네임</div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용을 입력하세요</p>
+            <div class="col">
+                <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">닉네임</div>
+                    <div class="card-body text-secondary">
+                        <h5 class="card-title">제목</h5>
+                        <p class="card-text" style="height: 100px">내용을 입력하세요</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>
