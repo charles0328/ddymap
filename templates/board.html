@@ -120,24 +120,25 @@
 
         function fill_post() {
             let newNickname = $('#nickname').val()
+            let newPasssword = $('#password').val()
+            let newTitle = $('#title').val()
+            let newContent = $('#content').val()
+
             if (newNickname == '') {
                 alert('닉네임을 입력하세요');
                 return;
-            }
-            let newPasssword = $('#password').val()
-            if (newPasssword == '') {
+            } else if (newPasssword == '') {
                 alert('비밀번호를 입력하세요');
                 return;
-            }
-            let newTitle = $('#title').val()
-            if (newTitle == '') {
+            } else if (newTitle == '') {
                 alert('제목을 입력하세요');
                 return;
-            }
-            let newContent = $('#content').val()
-            if (newContent == '') {
+            } else if (newContent == '') {
                 alert('내용을 입력하세요');
                 return;
+            } else {
+                alert('게시물이 등록되었습니다.')
+                $('#post-box').hide()
             }
         }
 
