@@ -1,20 +1,25 @@
-from flask import Flask, render_template,request,jsonify
+from flask import Flask, render_template, request, jsonify
+
 app = Flask(__name__)
 
 from pymongo import MongoClient
 import certifi
 
 ca = certifi.where()
-client = MongoClient('mongodb+srv://charles:1111@cluster0.szvramp.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://charles:1111@cluster0.szvramp.mongodb.net/Cluster0?retryWrites=true&w=majority',
+                     tlsCAFile=ca)
 db = client.dbddymap
+
 
 @app.route('/')
 def home():
-   return render_template('index.html')
+    return render_template('index.html')
+
 
 @app.route('/board')
 def board():
-   return render_template('board.html')
+    return render_template('board.html')
+
 
 @app.route('/board/regist', methods=["POST"])
 def board_post():
@@ -33,19 +38,19 @@ def board_post():
 
     return jsonify({'msg': '게시물 등록 완료!'})
 
+
 @app.route('/board/regist', methods=["GET"])
 def board_get():
-    cards_list = list(db.board.find({},{'_id':False}))
+    cards_list = list(db.board.find({}, {'_id': False}))
     return jsonify({'cards': cards_list})
+
 
 @app.route('/about')
 def about():
-   return render_template('about.html')
+    return render_template('about.html')
+
 
 if __name__ == '__main__':
-   app.run('0.0.0.0',port=3000,debug=True)
+    app.run('0.0.0.0', port=3000, debug=True)
 
-
-db.users.insert_one({'name':'kay','age':27})
-
-
+db.users.insert_one({'name': 'kay', 'age': 27})
