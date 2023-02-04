@@ -16,7 +16,7 @@ def home():
 def board():
    return render_template('board.html')
 
-@app.route('/board', methods=["POST"])
+@app.route('/board/regist', methods=["POST"])
 def board_post():
     nickname_receive = request.form['nickname_give']
     password_receive = request.form['password_give']
@@ -33,11 +33,10 @@ def board_post():
 
     return jsonify({'msg': '게시물 등록 완료!'})
 
-@app.route('/board', methods=["GET"])
+@app.route('/board/regist', methods=["GET"])
 def board_get():
-    post_list = list(db.board.find({}, {'_id': False}))
-    return jsonify({'posts': post_list })
-
+    cards_list = list(db.board.find({},{'_id':False}))
+    return jsonify({'cards': cards_list})
 
 @app.route('/about')
 def about():

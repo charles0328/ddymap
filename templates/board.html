@@ -116,6 +116,56 @@
 
     </style>
     <script>
+        $(document).ready(function () {
+            show_card();
+        });
+
+        function show_card() {
+            $('#card-box').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/board/regist',
+                data: {},
+                success: function (response) {
+                    let rows = response['cards']
+                    for (let i = 0; i < rows.length; i++) {
+                        let nickname = rows[i]['nickname']
+                        let title = rows[i]['title']
+                        let content = rows[i]['content']
+
+                        let temp_html = `<div class="col">
+                                            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                                                <div class="card-header">${nickname}</div>
+                                                <div class="card-body text-secondary">
+                                                    <h5 class="card-title">${title}</h5>
+                                                    <p class="card-text" style="height: 100px">${content}</p>
+                                                </div>
+                                            </div>
+                                        </div>`
+                        $('#card-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+        function save_post() {
+            let nickname = $('#nickname').val()
+            let password = $('#password').val()
+            let title = $('#title').val()
+            let content = $('#content').val()
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/board/regist',
+                data: { 'nickname_give': nickname, 'password_give': password, 'title_give': title, 'content_give': content},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
         function open_box() {
             $('#post-box').show()
         }
@@ -145,38 +195,6 @@
             }
         }
 
-        function save_post() {
-            let nickname = $('#nickname').val()
-            let password = $('#password').val()
-            let title = $('#title').val()
-            let content = $('#content').val()
-
-
-            $.ajax({
-                type: 'POST',
-                url: '/board',
-                data: { 'nickname_give': nickname, 'password_give': password, 'title_give': title, 'content_give': content},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            });
-        }
-
-        $(document).ready(function () {
-            show_post();
-        });
-
-        function show_post() {
-            $.ajax({
-                type: 'GET',
-                url: '/board',
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                }
-            });
-        }
 
     </script>
 </head>
@@ -236,8 +254,8 @@
     <hr align="left" style="border: 1.5px;">
 </div>
 <div class="mycard">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" id="">
+    <div id="card-box" class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
             <div class="card border-secondary mb-3" style="max-width: 18rem;">
                 <div class="card-header">닉네임</div>
                 <div class="card-body text-secondary">
