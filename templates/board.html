@@ -142,10 +142,40 @@
             } else if (newContent == '') {
                 alert('내용을 입력하세요');
                 return;
-            } else {
-                alert('게시물이 등록되었습니다.')
-                $('#post-box').hide()
             }
+        }
+
+        function save_post() {
+            let nickname = $('#nickname').val()
+            let password = $('#password').val()
+            let title = $('#title').val()
+            let content = $('#content').val()
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/board',
+                data: { 'nickname_give': nickname, 'password_give': password, 'title_give': title, 'content_give': content},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            show_post();
+        });
+
+        function show_post() {
+            $.ajax({
+                type: 'GET',
+                url: '/board',
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                }
+            });
         }
 
     </script>
@@ -197,7 +227,7 @@
         <textarea class="form-control" id="content" rows="3"></textarea>
     </div>
     <div class="mybtns">
-        <button type="button" class="btn btn-dark" onclick="fill_post();_box()">기록하기</button>
+        <button type="button" class="btn btn-dark" onclick="save_post(); _box()">기록하기</button>
         <button type="button" class="btn btn-outline-dark" onclick="close_box();_box()">닫기</button>
     </div>
 </div>
