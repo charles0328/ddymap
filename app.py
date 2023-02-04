@@ -18,7 +18,8 @@ def home():
 
 @app.route('/board')
 def board():
-    return render_template('board.html')
+    count = db.board.count_documents({})
+    return render_template('board.html', count=count)
 
 
 @app.route('/board/regist', methods=["POST"])
@@ -44,7 +45,6 @@ def board_get():
     cards_list = list(db.board.find({}, {'_id': False}))
     return jsonify({'cards': cards_list})
 
-
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -52,5 +52,3 @@ def about():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=3000, debug=True)
-
-db.users.insert_one({'name': 'kay', 'age': 27})

@@ -138,7 +138,10 @@
                                                 <div class="card-header">${nickname}</div>
                                                 <div class="card-body text-secondary">
                                                     <h5 class="card-title">${title}</h5>
-                                                    <p class="card-text" style="height: 100px">${content}</p>
+                                                        <p class="card-text" style="height: 100px">${content}</p>
+                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                            <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>`
@@ -188,7 +191,7 @@
             if (newNickname == '') {
                 alert('닉네임을 입력하세요.');
                 return;
-            }  else if (newTitle == '') {
+            } else if (newTitle == '') {
                 alert('제목을 입력하세요.');
                 return;
             } else if (newContent == '') {
@@ -209,6 +212,7 @@
                 save_post();
             }
         }
+
     </script>
 </head>
 <body>
@@ -263,7 +267,7 @@
     </div>
 </div>
 <div class="allpost">
-    <p>전체 게시글 (nn)</p>
+    <p>전체 게시글 ({{ count }})</p>
     <hr align="left" style="border: 1.5px;">
 </div>
 <div class="mycard">
@@ -274,6 +278,9 @@
                 <div class="card-body text-secondary">
                     <h5 class="card-title">제목</h5>
                     <p class="card-text" style="height: 100px">내용</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -282,7 +289,10 @@
                 <div class="card-header">닉네임</div>
                 <div class="card-body text-secondary">
                     <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용을 입력하세요.</p>
+                    <p class="card-text" style="height: 100px">내용</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -291,7 +301,10 @@
                 <div class="card-header">닉네임</div>
                 <div class="card-body text-secondary">
                     <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용을 입력하세요</p>
+                    <p class="card-text" style="height: 100px">내용</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
