@@ -158,7 +158,12 @@
             $.ajax({
                 type: 'POST',
                 url: '/board/regist',
-                data: { 'nickname_give': nickname, 'password_give': password, 'title_give': title, 'content_give': content},
+                data: {
+                    'nickname_give': nickname,
+                    'password_give': password,
+                    'title_give': title,
+                    'content_give': content
+                },
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
