@@ -186,21 +186,29 @@
             let newContent = $('#content').val()
 
             if (newNickname == '') {
-                alert('닉네임을 입력하세요');
+                alert('닉네임을 입력하세요.');
                 return;
-            } else if (newPasssword == '') {
-                alert('비밀번호를 입력하세요');
-                return;
-            } else if (newTitle == '') {
-                alert('제목을 입력하세요');
+            }  else if (newTitle == '') {
+                alert('제목을 입력하세요.');
                 return;
             } else if (newContent == '') {
-                alert('내용을 입력하세요');
+                alert('내용을 입력하세요.');
                 return;
+            } else if (newPasssword == '') {
+                alert('비밀번호를 입력하세요.');
+                return;
+            } else if ((newPasssword.length !== 4)) {
+                alert('비밀번호는 4자리로 입력해주세요.');
+                $('#password').val('');
+                return false;
+            } else if (!/^\d+$/.test(newPasssword)) {
+                alert("비밀번호는 숫자로만 입력해주세요.");
+                $('#password').val('');
+                return false;
+            } else {
+                save_post();
             }
         }
-
-
     </script>
 </head>
 <body>
@@ -250,7 +258,7 @@
         <textarea class="form-control" id="content" rows="3"></textarea>
     </div>
     <div class="mybtns">
-        <button type="button" class="btn btn-dark" onclick="save_post(); _box()">기록하기</button>
+        <button type="button" class="btn btn-dark" onclick="fill_post(); _box()">기록하기</button>
         <button type="button" class="btn btn-outline-dark" onclick="close_box();_box()">닫기</button>
     </div>
 </div>
