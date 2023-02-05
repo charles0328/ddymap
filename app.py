@@ -29,7 +29,11 @@ def board_post():
     title_receive = request.form['title_give']
     content_receive = request.form['content_give']
 
+    cards_list = list(db.board.find({}, {'_id': False}))
+    count = len(cards_list) + 1
+
     doc = {
+        'num': count,
         'nickname': nickname_receive,
         'password': password_receive,
         'title': title_receive,
@@ -45,11 +49,15 @@ def board_get():
     cards_list = list(db.board.find({}, {'_id': False}))
     return jsonify({'cards': cards_list})
 
+@app.route('/board/regist/delete', methods=["POST"])
+def card_delete():
+    num_receive = request.form['num_give']
+    db.board.delete_one({'num': int(num_receive)})
+    return jsonify({'msg': "삭제 완료"})
 
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

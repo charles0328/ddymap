@@ -139,6 +139,7 @@
                         let nickname = rows[i]['nickname']
                         let title = rows[i]['title']
                         let content = rows[i]['content']
+                        let num = rows[i]['num']
 
                         let temp_html = `<div class="col">
                                             <div class="card border-secondary mb-3" style="max-width: 18rem;">
@@ -147,7 +148,7 @@
                                                     <h5 class="card-title">${title}</h5>
                                                         <p class="card-text" style="height: 100px">${content}</p>
                                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                            <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                                                            <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
                                                         </div>
                                                 </div>
                                             </div>
@@ -157,6 +158,7 @@
                 }
             });
         }
+
 
         function save_post() {
             let nickname = $('#nickname').val()
@@ -176,6 +178,18 @@
                 },
                 success: function (response) {
                     alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function delete_card(num) {
+            $.ajax({
+                type: 'POST',
+                url: '/board/regist/delete',
+                data: {'num_give' : num},
+                success: function (response) {
+                    alert(response["msg"])
                     window.location.reload()
                 }
             });
@@ -225,19 +239,19 @@
 <body>
 <!-- HTML for Horizontal Menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="/">
-        <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
-    </a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/board">게시판</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About Us</a>
-            </li>
-        </ul>
-    </div>
+        <a href="/">
+            <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/board">게시판</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Us</a>
+                </li>
+            </ul>
+        </div>
 </nav>
 
 <div class="mytitle">
