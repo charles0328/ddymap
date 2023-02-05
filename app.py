@@ -28,6 +28,7 @@ def board_post():
     password_receive = request.form['password_give']
     title_receive = request.form['title_give']
     content_receive = request.form['content_give']
+    url_receive = request.form['url_give']
 
     cards_list = list(db.board.find({}, {'_id': False}))
     count = len(cards_list) + 1
@@ -37,7 +38,8 @@ def board_post():
         'nickname': nickname_receive,
         'password': password_receive,
         'title': title_receive,
-        'content': content_receive
+        'content': content_receive,
+        'url': url_receive
     }
     db.board.insert_one(doc)
 

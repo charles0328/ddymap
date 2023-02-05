@@ -140,19 +140,22 @@
                         let title = rows[i]['title']
                         let content = rows[i]['content']
                         let num = rows[i]['num']
+                        let url = rows[i]['url']
 
-                        let temp_html = `<div class="col">
-                                            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                                                <div class="card-header">${nickname}</div>
-                                                <div class="card-body text-secondary">
-                                                    <h5 class="card-title">${title}</h5>
-                                                        <p class="card-text" style="height: 100px">${content}</p>
-                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                            <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
+                        let temp_html = `        <div class="card mb-3" style="width: 100%;">
+                                                    <div class="row g-1">
+                                                        <img style="object-fit: cover; width: 35%" src="${url}" alt="...">
+                                                        <div style="width: 65%; margin-top: 20px" class="card-body">
+                                                            <p># 후기/꿀팁</p>
+                                                            <h5 class="card-title">${title}</h5>
+                                                            <p class="card-text">${content}</p>
+                                                            <p class="card-text"><small class="text-muted">${nickname}</small></p>
+                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                                <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
+                                                            </div>
                                                         </div>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                                    </div>
+                                                </div>`
                         $('#card-box').append(temp_html)
                     }
                 }
@@ -165,6 +168,7 @@
             let password = $('#password').val()
             let title = $('#title').val()
             let content = $('#content').val()
+            let url = $('#url').val()
 
 
             $.ajax({
@@ -174,7 +178,8 @@
                     'nickname_give': nickname,
                     'password_give': password,
                     'title_give': title,
-                    'content_give': content
+                    'content_give': content,
+                    'url_give': url
                 },
                 success: function (response) {
                     alert(response['msg'])
@@ -187,7 +192,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/board/regist/delete',
-                data: {'num_give' : num},
+                data: {'num_give': num},
                 success: function (response) {
                     alert(response["msg"])
                     window.location.reload()
@@ -239,19 +244,19 @@
 <body>
 <!-- HTML for Horizontal Menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/">
-            <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/board">게시판</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About Us</a>
-                </li>
-            </ul>
-        </div>
+    <a href="/">
+        <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/board">게시판</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="mytitle">
@@ -265,6 +270,20 @@
 </div>
 <div class="mypost" id="post-box">
     <div class="row g-3">
+        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+            <div style="margin-right: 15px" class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    상점 후기
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    꿀팁 공유
+                </label>
+            </div>
+        </div>
         <div class="col">
             <input id="nickname" type="text" class="form-control" placeholder="닉네임" aria-label="First name">
         </div>
@@ -273,6 +292,10 @@
                    style="width: 70%">
         </div>
         <p></p>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="url" class="form-control" id="url" placeholder="URL">
+        <label for="floatingInput">이미지 URL</label>
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">제목</label>
@@ -289,50 +312,56 @@
 </div>
 <div class="allpost">
     <div class="mysearch">
-    <p style="min-width: 150px; max-height: 10px; margin-left: 10px">전체 게시글 ({{ count }})</p>
-    <div class="container-fluid">
-        <form class="d-flex" role="search" style="width: 40%" >
-            <input id="searchTerm" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button id="btnsearch" class="btn btn-outline-success">Search</button>
-        </form>
-    </div>
+        <p style="min-width: 150px; max-height: 10px; margin-left: 10px">전체 게시글 ({{ count }})</p>
+        <div class="container-fluid">
+            <form class="d-flex" role="search" style="width: 40%">
+                <input id="searchTerm" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button id="btnsearch" class="btn btn-outline-success">Search</button>
+            </form>
+        </div>
     </div>
     <hr align="left" style="border: 1.5px;">
 </div>
 <div class="mycard">
     <div id="card-box" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">닉네임</div>
-                <div class="card-body text-secondary">
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row g-1">
+                <img style="object-fit: cover; width: 35%" src="https://ifh.cc/g/YcZCyy.jpg" alt="...">
+                <div style="width: 65%; margin-top: 20px" class="card-body">
+                    <p># 후기/꿀팁</p>
                     <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용</p>
+                    <p class="card-text">내용</p>
+                    <p class="card-text"><small class="text-muted">닉네임</small></p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">닉네임</div>
-                <div class="card-body text-secondary">
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row g-1">
+                <img style="object-fit: cover; width: 35%" src="https://ifh.cc/g/YcZCyy.jpg" alt="...">
+                <div style="width: 65%; margin-top: 20px" class="card-body">
+                    <p># 후기/꿀팁</p>
                     <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용</p>
+                    <p class="card-text">내용</p>
+                    <p class="card-text"><small class="text-muted">닉네임</small></p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">닉네임</div>
-                <div class="card-body text-secondary">
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row g-1">
+                <img style="object-fit: cover; width: 35%" src="https://ifh.cc/g/YcZCyy.jpg" alt="...">
+                <div style="width: 65%; margin-top: 20px" class="card-body">
+                    <p># 후기/꿀팁</p>
                     <h5 class="card-title">제목</h5>
-                    <p class="card-text" style="height: 100px">내용</p>
+                    <p class="card-text">내용</p>
+                    <p class="card-text"><small class="text-muted">닉네임</small></p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-secondary btn-sm" type="button">삭제</button>
+                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
                     </div>
                 </div>
             </div>
