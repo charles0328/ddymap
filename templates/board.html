@@ -275,11 +275,11 @@
 </div>
 <div class="allpost">
     <div class="mysearch">
-    <p style="min-width: 150px">전체 게시글 ({{ count }})</p>
+    <p style="min-width: 150px; max-height: 10px; margin-left: 10px">전체 게시글 ({{ count }})</p>
     <div class="container-fluid">
-        <form class="d-flex" role="search" style="width: 40%">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" role="search" style="width: 40%" >
+            <input id="searchTerm" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button id="btnsearch" class="btn btn-outline-success">Search</button>
         </form>
     </div>
     </div>

@@ -45,6 +45,7 @@ def board_get():
     cards_list = list(db.board.find({}, {'_id': False}))
     return jsonify({'cards': cards_list})
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
