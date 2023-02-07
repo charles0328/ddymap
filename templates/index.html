@@ -106,44 +106,24 @@
     // 카페식당 마커가 표시될 좌표 배열입니다
     var cafePositions = [
         new kakao.maps.LatLng(37.499590490909185, 127.0263723554437),
-        new kakao.maps.LatLng(37.499427948430814, 127.02794423197847),
-        new kakao.maps.LatLng(37.498553760499505, 127.02882598822454),
-        new kakao.maps.LatLng(37.497625593121384, 127.02935713582038),
-        new kakao.maps.LatLng(37.49646391248451, 127.02675574250912),
-        new kakao.maps.LatLng(37.49629291770947, 127.02587362608637),
-        new kakao.maps.LatLng(37.49754540521486, 127.02546694890695)
+        new kakao.maps.LatLng(37.499427948430814, 127.02794423197847)
     ];
 
     // 리필샵 마커가 표시될 좌표 배열입니다
     var shopPositions = [
         new kakao.maps.LatLng(37.497535461505684, 127.02948149502778),
-        new kakao.maps.LatLng(37.49671536281186, 127.03020491448352),
-        new kakao.maps.LatLng(37.496201943633714, 127.02959405469642),
-        new kakao.maps.LatLng(37.49640072567703, 127.02726459882308),
-        new kakao.maps.LatLng(37.49640098874988, 127.02609983175294),
-        new kakao.maps.LatLng(37.49932849491523, 127.02935780247945),
-        new kakao.maps.LatLng(37.49996818951873, 127.02943721562295)
+        new kakao.maps.LatLng(37.49671536281186, 127.03020491448352)
     ];
 
     // 생필품점 마커가 표시될 좌표 배열입니다
     var householdPositions = [
         new kakao.maps.LatLng(37.49966168796031, 127.03007039430118),
-        new kakao.maps.LatLng(37.499463762912974, 127.0288828824399),
-        new kakao.maps.LatLng(37.49896834100913, 127.02833986892401),
-        new kakao.maps.LatLng(37.49893267508434, 127.02673400572665),
-        new kakao.maps.LatLng(37.49872543597439, 127.02676785815386),
-        new kakao.maps.LatLng(37.49813096097184, 127.02591949495914),
-        new kakao.maps.LatLng(37.497680616783086, 127.02518427952202)
+        new kakao.maps.LatLng(37.499463762912974, 127.0288828824399)
     ];
 
     var etcPositions = [
         new kakao.maps.LatLng(37.49721078809879, 127.03070268983136),
-        new kakao.maps.LatLng(37.49840222163074, 127.02110207359988),
-        new kakao.maps.LatLng(37.49912241856842, 127.02426874854118),
-        new kakao.maps.LatLng(37.50070737696225, 127.02794470877437),
-        new kakao.maps.LatLng(37.496301661754885, 127.02706101153493),
-        new kakao.maps.LatLng(37.49703089508693, 127.02949260518679),
-        new kakao.maps.LatLng(37.498284283798235, 127.02521840836066)
+        new kakao.maps.LatLng(37.49840222163074, 127.02110207359988)
     ];
 
     var markerImageSrc = 'https://i.ibb.co/hMrXPNS/mapicon.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
@@ -290,17 +270,15 @@
 
         // 전체 카테고리가 클릭됐을 때
         if (type === 'all') {
-
             // 전체 카테고리를 선택된 스타일로 변경하고
             allMenu.className = 'menu_selected';
-
-            // 리필샵과 생필품점 카테고리는 선택되지 않은 스타일로 바꿉니다
+            // 나머지 카테고리는 선택되지 않은 스타일로 바꿉니다
             cafeMenu.className = '';
             shopMenu.className = '';
             householdMenu.className = '';
             etcMenu.className = '';
 
-            // 카페식당 마커들만 지도에 표시하도록 설정합니다
+            // 전체 마커가 지도에 표시하도록 설정합니다
             setCafeMarkers(map);
             setShopMarkers(map);
             setHouseholdMarkers(map);
@@ -311,7 +289,7 @@
             // 카페식당 카테고리를 선택된 스타일로 변경하고
             cafeMenu.className = 'menu_selected';
 
-            // 리필샵과 생필품점 카테고리는 선택되지 않은 스타일로 바꿉니다
+            // 나머지 카테고리는 선택되지 않은 스타일로 바꿉니다
             allMenu.className = '';
             shopMenu.className = '';
             householdMenu.className = '';
@@ -326,9 +304,11 @@
         } else if (type === 'shop') { // 리필샵 카테고리가 클릭됐을 때
 
             // 리필샵 카테고리를 선택된 스타일로 변경하고
+            shopMenu.className = 'menu_selected';
+
+            // 나머지 카테고리는 선택되지 않은 스타일로 바꿉니다
             allMenu.className = '';
             cafeMenu.className = '';
-            shopMenu.className = 'menu_selected';
             householdMenu.className = '';
             etcMenu.className = '';
 
@@ -341,10 +321,12 @@
         } else if (type === 'household') { // 생필품점 카테고리가 클릭됐을 때
 
             // 생필품점 카테고리를 선택된 스타일로 변경하고
+            householdMenu.className = 'menu_selected';
+
+            // 나머지 카테고리는 선택되지 않은 스타일로 바꿉니다
             allMenu.className = '';
             cafeMenu.className = '';
             shopMenu.className = '';
-            householdMenu.className = 'menu_selected';
             etcMenu.className = '';
 
             // 생필품점 마커들만 지도에 표시하도록 설정합니다
@@ -356,11 +338,13 @@
         }  else if (type === 'etc') { // 기타 카테고리가 클릭됐을 때
 
             // 기타 카테고리를 선택된 스타일로 변경하고
+            etcMenu.className = 'menu_selected';
+
+            // 나머지 카테고리는 선택되지 않은 스타일로 바꿉니다
             allMenu.className = '';
             cafeMenu.className = '';
             shopMenu.className = '';
             householdMenu.className = '';
-            etcMenu.className = 'menu_selected';
 
             // 기타 마커들만 지도에 표시하도록 설정합니다
             setCafeMarkers(null);
@@ -374,65 +358,101 @@
         {
             latlng: new kakao.maps.LatLng(37.499590490909185, 127.0263723554437),
                // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-            content: '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' +
-            '            카카오 스페이스닷원1' +
-            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-            '        </div>' +
-            '        <div class="body">' +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>'
+            content: ''
         },
-                {
+        {
             latlng: new kakao.maps.LatLng(37.499427948430814, 127.02794423197847),
                // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-            content: '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' +
-            '            카카오 스페이스닷원2' +
-            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-            '        </div>' +
-            '        <div class="body">' +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>'
+            content: ''
+        },
+        {
+            latlng: new kakao.maps.LatLng(37.497535461505684, 127.02948149502778),
+               // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            content: ''
+        },
+        {
+            latlng: new kakao.maps.LatLng(37.49671536281186, 127.03020491448352),
+               // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            content: ''
         },
        {
-            latlng: new kakao.maps.LatLng(37.498553760499505, 127.02882598822454),
+            latlng: new kakao.maps.LatLng(37.49966168796031, 127.03007039430118),
                // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-            content: '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' +
-            '            카카오 스페이스닷원3' +
-            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-            '        </div>' +
-            '        <div class="body">' +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>'
+            content: ''
+        },
+       {
+            latlng: new kakao.maps.LatLng(37.499463762912974, 127.0288828824399),
+               // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            content: ''
+        },
+       {
+            latlng: new kakao.maps.LatLng(37.49721078809879, 127.03070268983136),
+               // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            content: ''
+        },
+       {
+            latlng: new kakao.maps.LatLng(37.49840222163074, 127.02110207359988),
+               // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            content: ''
         }
-        ] // 마커가 표시될 위치입니다
+        ]
 
     var imageSrc = 'https://i.postimg.cc/PJKHBXSk/transparenticon.png'; // 마커이미지의 주소입니다
-    for (var i = 0; i < markerPositions.length; i ++) {
-        var imageSize = new kakao.maps.Size(19, 26) // 마커이미지의 크기입니다
+    //for (var i = 0; i < markerPositions.length; i ++) {
+    //}
+    markerPositions.forEach(function(value,i){
+        // 커스텀 오버레이를 생성합니다.
+        var overlay = new kakao.maps.CustomOverlay({
+            position: markerPositions[i].latlng
+        });
+
+        var wrap = document.createElement('div');
+        wrap.className = 'wrap';
+        var info = document.createElement('div');
+        info.className = 'info';
+        var title = document.createElement('div');
+        title.className = 'title';
+        var subject = '카카오 스페이스닷원3';
+        title.appendChild(document.createTextNode(subject));
+        var closeDiv = document.createElement('div');
+        closeDiv.className = 'close';
+        closeDiv.onclick = function () {
+            overlay.setMap(null);
+        }
+
+        var body = document.createElement('body');
+        body.classname = "body";
+        var desc = document.createElement('div');
+        desc.className = 'desc';
+
+        var ellipsis = document.createElement('div');
+        ellipsis.className = 'ellipsis';
+        ellipsis.innerHTML = '제주특별자치도 제주시 첨단로 242';
+
+        var jibunEllipsis = document.createElement('div');
+        jibunEllipsis.className = 'jibun ellipsis';
+        jibunEllipsis.innerHTML = '(우) 63309 (지번) 영평동 2181';
+
+        var link = document.createElement('div');
+        var aTag = document.createElement('a');
+        aTag.className = 'link';
+        aTag.href = 'https://www.kakaocorp.com/main';
+        aTag.target = '_blank';
+        aTag.appendChild(document.createTextNode('홈페이지'));
+        link.append(aTag);
+        title.append(closeDiv);
+        desc.append(ellipsis);
+        desc.append(jibunEllipsis);
+        desc.append(link);
+        body.append(desc);
+        info.append(title);
+        info.append(body);
+        wrap.append(info);
+
+        overlay.setContent(wrap);
+
+        // 마커이미지의 크기입니다
+        var imageSize = new kakao.maps.Size(19, 26)
 
         // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -444,24 +464,11 @@
             image: markerImage // 마커이미지 설정
         });
 
-        // 커스텀 오버레이를 생성합니다
-        var overlay = new kakao.maps.CustomOverlay({
-            map: map,
-            position: markerPositions[i].latlng,
-            content: markerPositions[i].content
-        });
-
         // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-        kakao.maps.event.addListener(marker, 'click', function() {
+        kakao.maps.event.addListener(marker, 'click', function () {
             overlay.setMap(map);
         });
-
-        // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-        function closeOverlay() {
-            overlay.setMap(null);
-        }
-    }
-
+    });
 
     </script>
 </body>
