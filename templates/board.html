@@ -152,6 +152,10 @@
                                                     <p class="card-text">${content}</p>
                                                     <p class="card-text"><small class="text-muted">${nickname}</small></p>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <div class="col">
+                                                            <input id="passwordInput" type="text" class="form-control" placeholder="비밀번호" aria-label="Last name"
+                                                                   style="width: 70%">
+                                                        </div>
                                                         <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
                                                     </div>
                                                 </div>
@@ -192,17 +196,26 @@
         }
 
         function delete_card(num) {
+            let passwordInput = $('#passwordInput').val()
+            console.log(passwordInput)
+
             $.ajax({
                 type: 'POST',
                 url: '/board/regist/delete',
-                data: {'num_give': num},
+                data: {
+                    'num_give': num,
+                    'pw': passwordInput
+                },
+
                 success: function (response) {
                     alert(response["msg"])
                     window.location.reload()
+
+                }, error: function () {
+                    alert('비밀번호가 일치하지 않습니다.');
                 }
             });
         }
-
 
 
         function open_box() {
