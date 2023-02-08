@@ -80,7 +80,7 @@ def delete_card():
     print(num, pw)
     if card:
         db.board.delete_one({'num': int(num)})
-        return jsonify({'msg': '삭제가 완료되었습니다.'})
+        return jsonify({'msg': '삭제가 완료되었습니다!'})
     else:
         return jsonify({'msg': 'Card not found'}), 404
 
