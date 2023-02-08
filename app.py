@@ -15,6 +15,12 @@ db = client.dbddymap
 def home():
     return render_template('index.html')
 
+@app.route('/getdata', methods=["GET"])
+def data_get():
+    shops_list = list(db.shops.find({}, {'_id': False}))
+    print(shops_list)
+    return jsonify({'shops': shops_list})
+
 
 # 게시판 페이지
 @app.route('/board')
