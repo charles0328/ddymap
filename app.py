@@ -16,17 +16,45 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/getdata', methods=["GET"])
-def data_get():
-    print("data_get function called")
-    shops_count = db.shops.count_documents({})
-    print("Number of documents in shops collection:", shops_count)
+@app.route('/getdatacafe', methods=["GET"])
+def data_cafe_get():
+    print("data_cafe_get function called")
+    cafes_count = db.cafes.count_documents({})
+    print("Number of documents in cafes collection:", cafes_count)
 
-    shops_list = list(db.shops.find({}, {'_id': False}))
-    print("Shops list:", shops_list)
-    return jsonify({'shop':shops_list})
+    cafes_list = list(db.cafes.find({}, {'_id': False}))
+    print("Cafes list:", cafes_list)
+    return jsonify({'cafe':cafes_list})
 
+@app.route('/getdatarefill', methods=["GET"])
+def data_refill_get():
+    print("data_refill_get function called")
+    refills_count = db.refills.count_documents({})
+    print("Number of documents in cafes collection:", refills_count)
 
+    refills_list = list(db.refills.find({}, {'_id': False}))
+    print("Refills list:", refills_list)
+    return jsonify({'refill':refills_list})
+
+@app.route('/getdatadaily', methods=["GET"])
+def data_daily_get():
+    print("data_daily_get function called")
+    dailys_count = db.dailys.count_documents({})
+    print("Number of documents in cafes collection:", dailys_count)
+
+    dailys_list = list(db.dailys.find({}, {'_id': False}))
+    print("Dailys list:", dailys_list)
+    return jsonify({'daily':dailys_list})
+
+@app.route('/getdataetc', methods=["GET"])
+def data_etc_get():
+    print("data_etc_get function called")
+    etcs_count = db.etcs.count_documents({})
+    print("Number of documents in cafes collection:", etcs_count)
+
+    etcs_list = list(db.etcs.find({}, {'_id': False}))
+    print("Etcs list:", etcs_list)
+    return jsonify({'etc':etcs_list})
 
 
 # 게시판 페이지
