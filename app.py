@@ -24,27 +24,9 @@ def data_get():
 
     shops_list = list(db.shops.find({}, {'_id': False}))
     print("Shops list:", shops_list)
+    return jsonify({'shop':shops_list})
 
 
-print("Before data_get")
-data_get()
-print("After data_get")
-
-
-@app.route('/getdata', methods=["GET"])
-def data_get():
-    print("data_get function called")
-    shops_count = db.shops.count_documents({})
-    print("Number of documents in shops collection:", shops_count)
-
-    shops_list = list(db.shops.find({}, {'_id': False}))
-    print("Shops list:", shops_list)
-
-    return jsonify({'shops': shops_list})
-
-print("Before data_get")
-data_get()
-print("After data_get")
 
 
 # 게시판 페이지

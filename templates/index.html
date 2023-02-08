@@ -101,6 +101,24 @@
     </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b16bb18fadb4010e3a075c836c12861"></script>
     <script>
+
+       /* function show_order() {
+            $.ajax({
+                type: 'GET',
+                url: '/',
+                data: {},
+                success: function (response) {
+                    let rows = response['shops']
+                    for (let i = 0; i < rows.length; i++) {
+                        let Latitude = rows[i]['latitude']
+                        let Longitude = rows[i]['longitude']
+
+                        console.log(Latitude, Longitude)
+                    }
+                }
+            });
+        }*/
+
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(37.498004414546934, 127.02770621963765), // 지도의 중심좌표
@@ -110,10 +128,32 @@
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
     // 카페식당 마커가 표시될 좌표 배열입니다
-    var cafePositions = [
-        new kakao.maps.LatLng(37.499590490909185, 127.0263723554437),
-        new kakao.maps.LatLng(37.499427948430814, 127.02794423197847)
-    ];
+    var cafePositions = [];
+        function show_cafe() {
+            $.ajax({
+                type: 'GET',
+                url: '/getdata',
+                data: {},
+                success: function (response) {
+                    let rows = response['shop']
+                    console.log(rows);
+                    for (let i = 0; i < rows.length; i++) {
+                        let temp = rows[i]
+                        let Latitude = temp['Latitude']
+                        let Longitude = temp['Longitude']
+                        console.log(Latitude,Longitude);
+                        cafePositions.push(new kakao.maps.LatLng(Latitude, Longitude));
+                        console.log(cafePositions);
+                    }
+                }
+            });
+            createCafeMarkers();
+        };
+        show_cafe();
+
+        /*new kakao.maps.LatLng(37.499590490909185, 127.0263723554437),
+        new kakao.maps.LatLng(37.499427948430814, 127.02794423197847)*/
+
 
     // 리필샵 마커가 표시될 좌표 배열입니다
     var shopPositions = [
@@ -431,6 +471,37 @@
         });
 
     }
+
+        function show_info(){
+            $.ajax({
+                type: "GET",
+                url: "/wastemap",
+                data: {},
+                success: function (response) {
+                    let rows = response['buckets']
+                    for (let i = 0; i < rows.length; i++) {
+                        let Name = rows[i]['name']
+                        let Category = rows[i]['category']
+                        let Address = rows[i]['address']
+
+                        let temp_html = ``
+                        if (done == 0) {
+                            temp_html = `<li>
+                                            <h2>✅ ${bucket}</h2>
+                                            <button onClick="done_bucket(${num})" type="button" className="btn btn-outline-primary">완료!
+                                            </button>
+                                        </li>`
+                        } else {
+                            temp_html = `<li>
+                                            <h2 class="done">✅ ${bucket}</h2>
+                                        </li>`
+                        }
+                        $('#bucket-list').append(temp_html)
+                    }
+                }
+            });
+        }
+
 
     </script>
 </body>
