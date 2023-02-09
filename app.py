@@ -46,6 +46,16 @@ def data_daily_get():
     print("Dailys list:", dailys_list)
     return jsonify({'daily':dailys_list})
 
+@app.route('/getdatashop', methods=["GET"])
+def data_shop_get():
+    print("data_shop_get function called")
+    shops_count = db.shops.count_documents({})
+    print("Number of documents in cafes collection:", shops_count)
+
+    shops_list = list(db.shops.find({}, {'_id': False}))
+    print("Shops list:", shops_list)
+    return jsonify({'shop':shops_list})
+
 @app.route('/getdataetc', methods=["GET"])
 def data_etc_get():
     print("data_etc_get function called")
