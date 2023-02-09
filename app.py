@@ -10,7 +10,7 @@ client = MongoClient('mongodb+srv://charles:1111@cluster0.szvramp.mongodb.net/Cl
                      tlsCAFile=ca)
 db = client.dbddymap
 
-
+#지도 페이지 연결
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -57,7 +57,7 @@ def data_etc_get():
     return jsonify({'etc':etcs_list})
 
 
-# 게시판 페이지
+# 게시판 페이지 연결
 @app.route('/board')
 def board():
     count = db.board.count_documents({})
@@ -97,11 +97,10 @@ def board_get():
     cards_list = list(db.board.find({}, {'_id': False}))
     return jsonify({'cards': cards_list})
 
-
 # 게시물 검색
-@app.route('/board/regist', methods=["GET"])
+@app.route('/board/regist?=', methods=["GET"])
 def search_get():
-    search_receive = request.args.get('searchInput')
+    search_receive = request.args.get('search')
     print("검색", search_receive)
     search_list = list(db.board.find({'$or': [{'title': {'$regex': search_receive}},
                                               {'content': {'$regex': search_receive}},
@@ -114,8 +113,12 @@ def search_get():
 # 게시물 삭제
 @app.route('/board/regist/delete', methods=["POST"])
 def delete_card():
+
+    # <!-- 삭제버튼을 누른 카드의 데이터를 가져와라-->
     num = request.form.get('num_give')
     pw = request.form.get('pw')
+
+    # <!--DB에 저장된 카드의 'num'과 'password'를 가져와라-->
     card = db.board.find_one({'num': int(num), 'password': pw})
     print(card)
     print(num, pw)
@@ -126,7 +129,7 @@ def delete_card():
         return jsonify({'msg': 'Card not found'}), 404
 
 
-# 소개 페이지
+# 소개 페이지 연결
 @app.route('/about')
 def about():
     return render_template('about.html')

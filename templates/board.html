@@ -122,10 +122,13 @@
         }
 
     </style>
+
     <script>
         $(document).ready(function () {
             show_card();
         });
+
+        {#전체 게시물 노출 함수#}
 
         function show_card() {
             $('#card-box').empty()
@@ -167,6 +170,51 @@
             });
         }
 
+        {#게시물 검색 함수#}
+
+        function search_card() {
+            $('#card-box').empty()
+            let search = $('#searchTerm').val();
+            console.log(search)
+
+            $.ajax({
+                type: 'GET',
+                url: `/board/regist?search=${search}`,
+                data: {'search': search},
+                success: function (response) {
+                    let rows = response['searches']
+                    console.log(rows)
+
+                    for (let i = 0; i < rows.length; i++) {
+                        let nickname = rows[i]['nickname']
+                        let title = rows[i]['title']
+                        let content = rows[i]['content']
+                        let num = rows[i]['num']
+                        let url = rows[i]['url']
+                        let radio = rows[i]['radio']
+
+                        let temp_html = `<div class="card mb-3" style="width: 100%;">
+                                            <div class="row g-1">
+                                                <img style="object-fit: cover; width: 35%" src="${url}" onerror= "this.onerror=null; this.src='https://i.pinimg.com/564x/df/9c/f6/df9cf66c6ecc4574a166496ea11a5352.jpg';">
+                                                <div style="margin-left: 10px; width: 60%; margin-top: 5%; " class="card-body">
+                                                    <p>${radio}</p>
+                                                    <h5 class="card-title">${title}</h5>
+                                                    <p class="card-text">${content}</p>
+                                                    <p class="card-text"><small class="text-muted">${nickname}</small></p>
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`
+                        $('#card-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+
+        {#게시물 DB 저장 함수#}
 
         function save_post() {
             let nickname = $('#nickname').val()
@@ -195,6 +243,8 @@
             });
         }
 
+        {#게시물 삭제 함수#}
+
         function delete_card(num) {
             let passwordInput = $('#passwordInput').val()
             console.log(passwordInput)
@@ -217,6 +267,7 @@
             });
         }
 
+        {#게시물 작성창 관련 함수#}
 
         function open_box() {
             $('#post-box').show()
@@ -225,6 +276,8 @@
         function close_box() {
             $('#post-box').hide()
         }
+
+        {#게시물 등록 함수#}
 
         function fill_post() {
             let newNickname = $('#nickname').val()
@@ -277,22 +330,27 @@
     </div>
 </nav>
 
+{#페이지 타이틀#}
 <div class="mytitle">
     <h1 class="mypage">게시판</h1>
 </div>
+
+{#게시물 작성 안내#}
 <div class="mymessage">
     <h3>제로 웨이스트를 실천하는 나만의 방법을 알려주세요!</h3>
     <p></p>
     <h5>🔊 이제는 일상이 된 나만의 팁을 공유해주세요</h5>
     <button onclick="open_box()">글쓰기</button>
 </div>
+
+{#게시물 작성창#}
 <div class="mypost" id="post-box">
     <div class="row g-3">
         <div style="display: flex; flex-direction: row; margin-bottom: 10px">
             <div style="margin-right: 15px" class="form-check">
-                <input value="상점 후기" class="form-check-input" type="radio" name="radio" id="radioButton1" checked>
+                <input value="상점 방문 후기" class="form-check-input" type="radio" name="radio" id="radioButton1" checked>
                 <label class="form-check-label" for="radioButton1">
-                    상점 후기
+                    상점 방문 후기
                 </label>
             </div>
             <div class="form-check">
@@ -328,6 +386,8 @@
         <button type="button" class="btn btn-outline-dark" onclick="close_box();_box()">닫기</button>
     </div>
 </div>
+
+{#전체 게시글 조회#}
 <div class="allpost">
     <div class="mysearch">
         <p style="min-width: 150px; max-height: 10px; margin-left: 10px">전체 게시글 ({{ count }})</p>
@@ -340,6 +400,8 @@
     </div>
     <hr align="left" style="border: 1.5px;">
 </div>
+
+{#게시물 양식#}
 <div class="mycard">
     <div id="card-box" class="row row-cols-1 row-cols-md-3 g-4">
         <div class="card mb-3" style="width: 100%;">
@@ -386,6 +448,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
