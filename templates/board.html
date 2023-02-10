@@ -268,6 +268,28 @@
             });
         }
 
+        {#게시물 분류 함수#}
+
+        function select_card() {
+            let select_option = $('option[name=selectform]:selected').val()
+            console.log(select_option)
+
+            $.ajax({
+                type: 'POST',
+                url: '/board/regist/load',
+                data: {
+                    'radio_give': select_option,
+                },
+
+                success: function (response) {
+                    let cards_list = response;
+                    console.log(cards_list)
+                    window.location.reload()
+
+                }
+            });
+        }
+
         {#게시물 작성창 관련 함수#}
 
         function open_box() {
@@ -397,12 +419,11 @@
 <div class="allpost">
     <div class="mysearch">
         <p style="min-width: 150px; max-height: 10px; margin-left: 10px">전체 게시글 ({{ count }})</p>
-        <div class="container-fluid">
-            <form class="d-flex" role="search" style="width: 40%">
-                <input id="searchTerm" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button id="btnsearch" class="btn btn-outline-success">Search</button>
-            </form>
-        </div>
+        <select onchange="select_card()" name="selectform" id="selectform" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Open this select menu</option>
+            <option value="상점 방문 후기">상점 방문 후기</option>
+            <option value="꿀팁 공유">꿀팁 공유</option>
+        </select>
     </div>
     <hr align="left" style="border: 1.5px;">
 </div>
@@ -410,48 +431,6 @@
 {#게시물 양식#}
 <div class="mycard">
     <div id="card-box" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="card mb-3" style="width: 100%;">
-            <div class="row g-1">
-                <img style="object-fit: cover; width: 35%" src="https://ifh.cc/g/YcZCyy.jpg" alt="...">
-                <div style="width: 65%; margin-top: 20px" class="card-body">
-                    <p># 후기/꿀팁</p>
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p class="card-text"><small class="text-muted">닉네임</small></p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3" style="width: 100%;">
-            <div class="row g-1">
-                <img style="object-fit: cover; width: 35%" src="https://ifh.cc/g/YcZCyy.jpg" alt="...">
-                <div style="width: 65%; margin-top: 20px" class="card-body">
-                    <p># 후기/꿀팁</p>
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p class="card-text"><small class="text-muted">닉네임</small></p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3" style="width: 100%;">
-            <div class="row g-1">
-                <img style="object-fit: cover; width: 35%" src="https://ifh.cc/g/YcZCyy.jpg" alt="...">
-                <div style="width: 65%; margin-top: 20px" class="card-body">
-                    <p># 후기/꿀팁</p>
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p class="card-text"><small class="text-muted">닉네임</small></p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 </body>

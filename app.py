@@ -10,7 +10,8 @@ client = MongoClient('mongodb+srv://charles:1111@cluster0.szvramp.mongodb.net/Cl
                      tlsCAFile=ca)
 db = client.dbddymap
 
-#지도 페이지 연결
+
+# 지도 페이지 연결
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -24,7 +25,8 @@ def data_cafe_get():
 
     cafes_list = list(db.cafes.find({}, {'_id': False}))
     print("Cafes list:", cafes_list)
-    return jsonify({'cafe':cafes_list})
+    return jsonify({'cafe': cafes_list})
+
 
 @app.route('/getdatarefill', methods=["GET"])
 def data_refill_get():
@@ -34,7 +36,8 @@ def data_refill_get():
 
     refills_list = list(db.refills.find({}, {'_id': False}))
     print("Refills list:", refills_list)
-    return jsonify({'refill':refills_list})
+    return jsonify({'refill': refills_list})
+
 
 @app.route('/getdatadaily', methods=["GET"])
 def data_daily_get():
@@ -44,7 +47,8 @@ def data_daily_get():
 
     dailys_list = list(db.dailys.find({}, {'_id': False}))
     print("Dailys list:", dailys_list)
-    return jsonify({'daily':dailys_list})
+    return jsonify({'daily': dailys_list})
+
 
 @app.route('/getdatashop', methods=["GET"])
 def data_shop_get():
@@ -54,7 +58,8 @@ def data_shop_get():
 
     shops_list = list(db.shops.find({}, {'_id': False}))
     print("Shops list:", shops_list)
-    return jsonify({'shop':shops_list})
+    return jsonify({'shop': shops_list})
+
 
 @app.route('/getdataetc', methods=["GET"])
 def data_etc_get():
@@ -64,7 +69,7 @@ def data_etc_get():
 
     etcs_list = list(db.etcs.find({}, {'_id': False}))
     print("Etcs list:", etcs_list)
-    return jsonify({'etc':etcs_list})
+    return jsonify({'etc': etcs_list})
 
 
 # 게시판 페이지 연결
@@ -107,28 +112,39 @@ def board_get():
     cards_list = list(db.board.find({}, {'_id': False}))
     return jsonify({'cards': cards_list})
 
-# 게시물 검색
-@app.route('/board/regist?=', methods=["GET"])
-def search_get():
-    search_receive = request.args.get('search')
-    print("검색", search_receive)
-    search_list = list(db.board.find({'$or': [{'title': {'$regex': search_receive}},
-                                              {'content': {'$regex': search_receive}},
-                                              {'nickname': {'$regex': search_receive}}]},
-                                     {'_id': False}))
-    print("검색 결과", search_list)
-    return jsonify({'searches': search_list})
+
+# # 게시물 검색
+# @app.route('/board/regist?=', methods=["GET"])
+# def search_get():
+#     search_receive = request.args.get('search')
+#     print("검색", search_receive)
+#     search_list = list(db.board.find({'$or': [{'title': {'$regex': search_receive}},
+#                                               {'content': {'$regex': search_receive}},
+#                                               {'nickname': {'$regex': search_receive}}]},
+#                                      {'_id': False}))
+#     print("검색 결과", search_list)
+#     return jsonify({'searches': search_list})
+
+
+# 게시물 카테고리 선택
+@app.route("/board/regist/load", methods=["POST"])
+def load_data():
+    selected_option = request.form.get("radio_give")
+
+    cards_list = list(db.board.find({'radio': selected_option}, {'_id': False}))
+    print(cards_list)
+
+    return jsonify({'card_list': cards_list})
 
 
 # 게시물 삭제
 @app.route('/board/regist/delete', methods=["POST"])
 def delete_card():
-
-    # <!-- 삭제버튼을 누른 카드의 데이터를 가져와라-->
+    # <!-- 삭제버튼을 누른 카드의 데이터를 가져와라 -->
     num = request.form.get('num_give')
     pw = request.form.get('pw')
 
-    # <!--DB에 저장된 카드의 'num'과 'password'를 가져와라-->
+    # <!--DB에 저장된 카드의 'num'과 'password'를 가져와라 -->
     card = db.board.find_one({'num': int(num), 'password': pw})
     print(card)
     print(num, pw)
