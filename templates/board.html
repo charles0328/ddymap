@@ -155,10 +155,10 @@
                                                     <p class="card-text">${content}</p>
                                                     <p class="card-text"><small class="text-muted">${nickname}</small></p>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <div class="col">
+
                                                             <input id="passwordInput" type="text" class="form-control" placeholder="비밀번호" aria-label="Last name"
-                                                                   style="width: 70%">
-                                                        </div>
+                                                                   style="width: 50%;">
+
                                                         <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
                                                     </div>
                                                 </div>
@@ -314,32 +314,31 @@
 </head>
 <body>
 <!-- HTML for Horizontal Menu -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a href="/">
-      <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/board">게시판</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About Us</a>
-        </li>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a href="/">
+            <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/board">게시판</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Us</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
-
 {#페이지 타이틀#}
-<div class="mytitle">
-    <h1 class="mypage">게시판</h1>
-</div>
+{#<div class="mytitle">#}
+{#    <h1 class="mypage">게시판</h1>#}
+{#</div>#}
 
 {#게시물 작성 안내#}
 <div class="mymessage">
