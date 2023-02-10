@@ -188,6 +188,40 @@
             font-size: 12px;
             color: #5085BB;
         }
+
+        @media ( max-width: 480px ) {
+        .category {
+            position: absolute;
+            overflow: hidden;
+            top: 10px;
+            left: 10px;
+            width: 300px;
+            height: 60px;
+            z-index: 10;
+            border: 1px solid black;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            font-size: 10px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .category .menu_selected {
+            background: #FF5F4A;
+            color: #fff;
+            border-left: 1px solid #915B2F;
+            border-right: 1px solid #915B2F;
+            margin: 0 -1px;
+        }
+
+        .category li {
+            list-style: none;
+            float: left;
+            width: 60px;
+            height: 60px;
+            padding-top: 5px;
+            cursor: pointer;
+        }
+        }
     </style>
 </head>
 <body>
