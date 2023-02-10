@@ -109,155 +109,200 @@
         };
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-
-    // 카페식당 마커가 표시될 좌표 배열입니다
     var cafePositions = [];
-        function show_cafe() {
-            $.ajax({
-                type: 'GET',
-                url: '/getdatacafe',
-                data: {},
-                success: function (response) {
-                    let rows = response['cafe']
-                    //console.log(rows);
-                    for (let i = 0; i < rows.length; i++) {
-                        let temp = rows[i]
-                        let Latitude = temp['Latitude']
-                        let Longitude = temp['Longitude']
-                        //console.log(Latitude,Longitude);
-                        cafePositions.push(new kakao.maps.LatLng(Latitude, Longitude));
-                        //console.log(cafePositions);
-                    }
-                    refreshMap();
-                }
-            })
-        };
-        show_cafe();
+    var cafeInfoArr = [];
 
     var shopPositions = [];
-        function show_shop() {
-            $.ajax({
-                type: 'GET',
-                url: '/getdatarefill',
-                data: {},
-                success: function (response) {
-                    let rows = response['refill']
-                    //console.log(rows);
-                    for (let i = 0; i < rows.length; i++) {
-                        let temp = rows[i]
-                        let Latitude = temp['Latitude']
-                        let Longitude = temp['Longitude']
-                        //console.log(Latitude,Longitude);
-                        shopPositions.push(new kakao.maps.LatLng(Latitude, Longitude));
-                        //console.log(cafePositions);
-                    }
-                    refreshMap();
-                }
-            })
-        };
-        show_shop();
+    var shopInfoArr = [];
 
     var householdPositions = [];
-        function show_household() {
-            $.ajax({
-                type: 'GET',
-                url: '/getdatadaily',
-                data: {},
-                success: function (response) {
-                    let rows = response['daily']
-                    //console.log(rows);
-                    for (let i = 0; i < rows.length; i++) {
-                        let temp = rows[i]
-                        let Latitude = temp['Latitude']
-                        let Longitude = temp['Longitude']
-                        //console.log(Latitude,Longitude);
-                        householdPositions.push(new kakao.maps.LatLng(Latitude, Longitude));
-                        //console.log(cafePositions);
-                    }
-                    refreshMap();
-                }
-            })
-        };
-        show_household();
+    var householdInfoArr = [];
 
     var etcPositions = [];
-        function show_etc() {
-            $.ajax({
-                type: 'GET',
-                url: '/getdataetc',
-                data: {},
-                success: function (response) {
-                    let rows = response['etc']
-                    //console.log(rows);
-                    for (let i = 0; i < rows.length; i++) {
-                        let temp = rows[i]
-                        let Latitude = temp['Latitude']
-                        let Longitude = temp['Longitude']
-                        //console.log(Latitude,Longitude);
-                        etcPositions.push(new kakao.maps.LatLng(Latitude, Longitude));
-                        //console.log(cafePositions);
-                    }
-                    refreshMap();
-                }
-            })
-        };
-        show_etc();
+    var etcInfoArr = [];
 
-    var shopOverlays = [];
-        function show_overlay() {
-            $.ajax({
-                type: 'GET',
-                url: '/getdatashop',
-                data: {},
-                success: function (response) {
-                    let rows = response['shop']
-                    console.log(rows);
-                    for (let i = 0; i < rows.length; i++) {
-                        let temp = rows[i]
-                        let Name = temp['Name']
-                        let Address = temp['Address']
-                        let Latitude = temp['Latitude']
-                        let Longitude = temp['Longitude']
-                        shopOverlays.push([Name, Address, Latitude, Longitude]);
-                        console.log(shopOverlays[0][1]);
-                        console.log(shopOverlays);
-                    }
-                }
-            })
-        };
-        show_overlay();
-
-    /*
-    var cafePositions = [
-        new kakao.maps.LatLng(37.5623319, 126.8403025),
-        new kakao.maps.LatLng(37.5810482, 127.0513881)
-    ]
-
-    // 리필샵 마커가 표시될 좌표 배열입니다
-    var shopPositions = [
-        new kakao.maps.LatLng(37.497535461505684, 127.02948149502778),
-        new kakao.maps.LatLng(37.49671536281186, 127.03020491448352)
-    ];
-
-    // 생필품점 마커가 표시될 좌표 배열입니다
-    var householdPositions = [
-        new kakao.maps.LatLng(37.49966168796031, 127.03007039430118),
-        new kakao.maps.LatLng(37.499463762912974, 127.0288828824399)
-    ];
-
-    var etcPositions = [
-        new kakao.maps.LatLng(37.49721078809879, 127.03070268983136),
-        new kakao.maps.LatLng(37.49840222163074, 127.02110207359988)
-    ];
-*/
     var markerImageSrc = 'https://i.ibb.co/hMrXPNS/mapicon.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
         cafeMarkers = []; // 카페식당 마커 객체를 가지고 있을 배열입니다
         shopMarkers = []; // 리필샵 마커 객체를 가지고 있을 배열입니다
         householdMarkers = []; // 생필품점 마커 객체를 가지고 있을 배열입니다
         etcMarkers = []; // 기타 마커 객체를 가지고 있을 배열입니다
 
-    refreshMap();
+
+
+    f_init();   /// 초기화
+    function f_init(){
+        show_cafe();
+        show_shop();
+        show_household();
+        show_etc();
+        refreshMap();
+    }
+
+    function deleteMarker(){
+
+        for(var i =0; i<cafePositions.length; i++){
+            cafeMarkers[i].setMap(null);
+        }
+
+
+        for(var i =0; i<shopPositions.length; i++){
+            shopPositions[i].setMap(null);
+        }
+
+
+        for(var i =0; i<householdPositions.length; i++){
+            householdPositions[i].setMap(null);
+        }
+
+
+        for(var i =0; i<etcPositions.length; i++){
+            etcPositions[i].setMap(null);
+        }
+    }
+
+    // 카페식당 마커가 표시될 좌표 배열입니다
+
+        function show_cafe() {
+            $.ajax({
+                type: 'GET',
+                url: '/getdatacafe',
+                data: {},
+                async : false,
+                success: function (response) {
+                    let rows = response['cafe']
+
+                    for (let i = 0; i < rows.length; i++) {
+                        let temp = rows[i]
+                        let Name = temp['Name']
+                         let category = temp['Category'];
+                        let Address = temp['Address']
+                        let Latitude = temp['Latitude']
+                        let Longitude = temp['Longitude']
+
+                        cafePositions.push(new kakao.maps.LatLng(Latitude, Longitude));
+
+                        var obj = new Object();
+                        obj.name = Name;
+                        obj.address = Address;
+                        obj.category = category;
+                        obj.latitude = Latitude;
+                        obj.longitude = Longitude;
+                        cafeInfoArr.push(obj);
+
+                    }
+
+                }
+            })
+        };
+
+
+
+        function show_shop() {
+            $.ajax({
+                type: 'GET',
+                url: '/getdatarefill',
+                data: {},
+                async : false,
+                success: function (response) {
+                    let rows = response['refill']
+
+                    for (let i = 0; i < rows.length; i++) {
+                        let temp = rows[i];
+                        let category = temp['Category'];
+                        let Name = temp['Name'];
+                        let Address = temp['Address'];
+                        let Latitude = temp['Latitude'];
+                        let Longitude = temp['Longitude'];
+
+                        shopPositions.push(new kakao.maps.LatLng(Latitude, Longitude));
+
+                        var obj = new Object();
+                        obj.name = Name;
+                        obj.address = Address;
+                        obj.category = category;
+                        obj.latitude = Latitude;
+                        obj.longitude = Longitude;
+                        shopInfoArr.push(obj);
+
+                    }
+
+                }
+            })
+        };
+
+
+
+        function show_household() {
+            $.ajax({
+                type: 'GET',
+                url: '/getdatadaily',
+                data: {},
+                async : false,
+                success: function (response) {
+                    let rows = response['daily']
+
+                    for (let i = 0; i < rows.length; i++) {
+                        let temp = rows[i];
+                        let Name = temp['Name'];
+                        let category = temp['Category'];
+                        let Address = temp['Address'];
+                        let Latitude = temp['Latitude'];
+                        let Longitude = temp['Longitude'];
+
+                        householdPositions.push(new kakao.maps.LatLng(Latitude, Longitude));
+
+                        var obj = new Object();
+                        obj.name = Name;
+                        obj.address = Address;
+                        obj.category = category;
+                        obj.latitude = Latitude;
+                        obj.longitude = Longitude;
+                        householdInfoArr.push(obj);
+
+                    }
+
+                }
+            })
+        };
+
+
+
+        function show_etc() {
+            $.ajax({
+                type: 'GET',
+                url: '/getdataetc',
+                data: {},
+                async : false,
+                success: function (response) {
+                    let rows = response['etc']
+
+                    for (let i = 0; i < rows.length; i++) {
+                        let temp = rows[i];
+                        let Name = temp['Name'];
+                        let category = temp['Category'];
+                        let Address = temp['Address'];
+                        let Latitude = temp['Latitude'];
+                        let Longitude = temp['Longitude'];
+
+                        etcPositions.push(new kakao.maps.LatLng(Latitude, Longitude));
+
+                        var obj = new Object();
+                        obj.name = Name;
+                        obj.address = Address;
+                        obj.category = category;
+                        obj.latitude = Latitude;
+                        obj.longitude = Longitude;
+                        etcInfoArr.push(obj);
+
+                    }
+
+                }
+            })
+        };
+
+
+
+    //refreshMap();
     function refreshMap() {
         createCafeMarkers(); // 카페식당 마커를 생성하고 카페식당 마커 배열에 추가합니다
         createShopMarkers(); // 리필샵 마커를 생성하고 리필샵 마커 배열에 추가합니다
@@ -306,7 +351,7 @@
     function setCafeMarkers(map) {
         for (var i = 0; i < cafeMarkers.length; i++) {
             cafeMarkers[i].setMap(map);
-            createOverlay(cafeMarkers[i] , map);
+            createOverlay(cafeMarkers[i] , map , i , 'cafe');
         }
     }
 
@@ -332,7 +377,7 @@
     function setShopMarkers(map) {
         for (var i = 0; i < shopMarkers.length; i++) {
             shopMarkers[i].setMap(map);
-            createOverlay(shopMarkers[i] , map);
+            createOverlay(shopMarkers[i] , map , i , 'shop');
         }
     }
 
@@ -359,7 +404,7 @@
     function setHouseholdMarkers(map) {
         for (var i = 0; i < householdMarkers.length; i++) {
             householdMarkers[i].setMap(map);
-            createOverlay(householdMarkers[i] , map);
+            createOverlay(householdMarkers[i] , map , i , 'household');
         }
     }
 
@@ -379,25 +424,40 @@
 
             // 생성된 마커를 생필품점 마커 배열에 추가합니다
             etcMarkers.push(marker);
+
         }
+
     }
 
     // 기타 마커들의 지도 표시 여부를 설정하는 함수입니다
     function setEtcMarkers(map) {
         for (var i = 0; i < etcMarkers.length; i++) {
             etcMarkers[i].setMap(map);
-            createOverlay(etcMarkers[i] , map);
+            createOverlay(etcMarkers[i] , map , i , 'etc');
         }
+
     }
+
 
 
     // 카테고리를 클릭했을 때 type에 따라 카테고리의 스타일과 지도에 표시되는 마커를 변경합니다
     function changeMarker(type){
+
+        map = new kakao.maps.Map(mapContainer, mapOption);
+
         var allMenu = document.getElementById('allMenu');
         var cafeMenu = document.getElementById('cafeMenu');
         var shopMenu = document.getElementById('shopMenu');
         var householdMenu = document.getElementById('householdMenu');
         var etcMenu = document.getElementById('etcMenu');
+
+        setCafeMarkers(null);
+        setShopMarkers(null);
+        setHouseholdMarkers(null);
+        setEtcMarkers(null);
+
+        //deleteMarker();
+
 
         // 전체 카테고리가 클릭됐을 때
         if (type === 'all') {
@@ -427,10 +487,11 @@
             etcMenu.className = '';
 
             // 카페식당 마커들만 지도에 표시하도록 설정합니다
-            setCafeMarkers(map);
+
             setShopMarkers(null);
             setHouseholdMarkers(null);
             setEtcMarkers(null);
+            setCafeMarkers(map);
 
         } else if (type === 'shop') { // 리필샵 카테고리가 클릭됐을 때
 
@@ -486,10 +547,10 @@
     }
 
     // var count = 0;
-    function createOverlay(markers , map){
+    function createOverlay(markers , map , index , category){
         // 커스텀 오버레이를 생성합니다.
         // count++;
-        // console.log(markers);
+
         var overlay = new kakao.maps.CustomOverlay({
             position: markers.getPosition()
         });
@@ -500,18 +561,28 @@
         info.className = 'info';
         var title = document.createElement('div');
         title.className = 'title';
-        /*
-        if (isNaN(count)) { // 값이 없어서 NaN값이 나올 경우
-         count = 0;
+
+
+
+        var selectCategory = [];
+
+        if(category == 'cafe'){
+
+            selectCategory =  cafeInfoArr;
+        }else if(category == 'shop'){
+
+            selectCategory =  shopInfoArr;
+        }else if(category == 'household'){
+
+            selectCategory =  householdInfoArr;
+        }else if(category == 'etc'){
+
+            selectCategory =  etcInfoArr;
         }
-         */
-
-        /*var subject = document.createElement('p'); for(var i = 0; i < overlayName.length; i++) {
-          overlayName[i]  }
-        }*/ // + count;
 
 
-        var subject = '애월카페'
+
+        var subject = selectCategory[index].name;
 
         title.appendChild(document.createTextNode(subject));
         var closeDiv = document.createElement('div');
@@ -527,22 +598,25 @@
 
         var ellipsis = document.createElement('div');
         ellipsis.className = 'ellipsis';
-        ellipsis.innerHTML = '제주시';
+        //ellipsis.innerHTML = '제주시';
 
-        var jibunEllipsis = document.createElement('div');
-        jibunEllipsis.className = 'jibun ellipsis';
-        jibunEllipsis.innerHTML = '(우) 63309 (지번) 영평동 2181';
+        ellipsis.innerHTML = selectCategory[index].address;
+
+        //var jibunEllipsis = document.createElement('div');
+        //jibunEllipsis.className = 'jibun ellipsis';
+        //jibunEllipsis.innerHTML = '(우) 63309 (지번) 영평동 2181';
+        //jibunEllipsis.innerHTML = selectCategory[index].address;
 
         var link = document.createElement('div');
         var aTag = document.createElement('a');
         aTag.className = 'link';
-        aTag.href = 'https://www.kakaocorp.com/main';
+        aTag.href = 'https://map.kakao.com/link/map/link/map/' + subject + ',' + selectCategory[index].latitude + ',' + selectCategory[index].longitude;
         aTag.target = '_blank';
-        aTag.appendChild(document.createTextNode('홈페이지'));
+        aTag.appendChild(document.createTextNode('카카오맵 위치보기'));
         link.append(aTag);
         title.append(closeDiv);
         desc.append(ellipsis);
-        desc.append(jibunEllipsis);
+        //desc.append(jibunEllipsis);
         desc.append(link);
         body.append(desc);
         info.append(title);
