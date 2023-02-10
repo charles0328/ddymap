@@ -779,7 +779,7 @@
         var link = document.createElement('div');
         var aTag = document.createElement('a');
         aTag.className = 'link';
-        aTag.href = 'https://map.kakao.com/link/map/link/map/' + subject + ',' + selectCategory[index].latitude + ',' + selectCategory[index].longitude;
+        aTag.href = 'https://map.kakao.com/link/map/' + subject + ',' + selectCategory[index].latitude + ',' + selectCategory[index].longitude;
         aTag.target = '_blank';
         aTag.appendChild(document.createTextNode('카카오맵 위치보기'));
         link.append(aTag);
