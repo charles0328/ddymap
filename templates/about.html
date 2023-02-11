@@ -19,6 +19,10 @@
             font-style: normal;
         }
 
+        #navbar_board {
+            margin-left: 2%;
+        }
+
         * {
             font-family: 'Pretendard-Regular';
         }
@@ -132,7 +136,7 @@
             padding-bottom: 6%;"
         }
 
-        @media ( max-width: 1600px ) {
+        @media ( max-width: 1200px ) {
             .slide {
             flex-direction: column;
             margin: auto;
@@ -216,7 +220,7 @@
 </head>
 <body>
 <!-- HTML for Horizontal Menu -->
-<nav style="margin-left: 2%" class="navbar navbar-expand-lg navbar-light">
+<nav id="navbar_board" class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <a href="/">
             <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
