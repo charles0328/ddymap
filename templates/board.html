@@ -173,47 +173,47 @@
         }
 
         {#게시물 검색 함수#}
-
-        function search_card() {
-            $('#card-box').empty()
-            let search = $('#searchTerm').val();
-            console.log(search)
-
-            $.ajax({
-                type: 'GET',
-                url: `/board/regist?search=${search}`,
-                data: {'search': search},
-                success: function (response) {
-                    let rows = response['searches']
-                    console.log(rows)
-
-                    for (let i = 0; i < rows.length; i++) {
-                        let nickname = rows[i]['nickname']
-                        let title = rows[i]['title']
-                        let content = rows[i]['content']
-                        let num = rows[i]['num']
-                        let url = rows[i]['url']
-                        let radio = rows[i]['radio']
-
-                        let temp_html = `<div class="card mb-3" style="width: 100%;">
-                                            <div class="row g-1">
-                                                <img style="object-fit: cover; width: 35%" src="${url}" onerror= "this.onerror=null; this.src='https://i.pinimg.com/564x/df/9c/f6/df9cf66c6ecc4574a166496ea11a5352.jpg';">
-                                                <div style="margin-left: 10px; width: 60%; margin-top: 5%; " class="card-body">
-                                                    <p>${radio}</p>
-                                                    <h5 class="card-title">${title}</h5>
-                                                    <p class="card-text">${content}</p>
-                                                    <p class="card-text"><small class="text-muted">${nickname}</small></p>
-                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-                        $('#card-box').append(temp_html)
-                    }
-                }
-            });
-        }
+{##}
+{#        function search_card() {#}
+{#            $('#card-box').empty()#}
+{#            let search = $('#searchTerm').val();#}
+{#            console.log(search)#}
+{##}
+{#            $.ajax({#}
+{#                type: 'GET',#}
+{#                url: `/board/regist?search=${search}`,#}
+{#                data: {'search': search},#}
+{#                success: function (response) {#}
+{#                    let rows = response['searches']#}
+{#                    console.log(rows)#}
+{##}
+{#                    for (let i = 0; i < rows.length; i++) {#}
+{#                        let nickname = rows[i]['nickname']#}
+{#                        let title = rows[i]['title']#}
+{#                        let content = rows[i]['content']#}
+{#                        let num = rows[i]['num']#}
+{#                        let url = rows[i]['url']#}
+{#                        let radio = rows[i]['radio']#}
+{##}
+{#                        let temp_html = `<div class="card mb-3" style="width: 100%;">#}
+{#                                            <div class="row g-1">#}
+{#                                                <img style="object-fit: cover; width: 35%" src="${url}" onerror= "this.onerror=null; this.src='https://i.pinimg.com/564x/df/9c/f6/df9cf66c6ecc4574a166496ea11a5352.jpg';">#}
+{#                                                <div style="margin-left: 10px; width: 60%; margin-top: 5%; " class="card-body">#}
+{#                                                    <p>${radio}</p>#}
+{#                                                    <h5 class="card-title">${title}</h5>#}
+{#                                                    <p class="card-text">${content}</p>#}
+{#                                                    <p class="card-text"><small class="text-muted">${nickname}</small></p>#}
+{#                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">#}
+{#                                                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>`#}
+{#                        $('#card-box').append(temp_html)#}
+{#                    }#}
+{#                }#}
+{#            });#}
+{#        }#}
 
 
         {#게시물 DB 저장 함수#}
