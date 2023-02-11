@@ -82,13 +82,19 @@
             margin-top: 70px;
             margin-left: 10%;
             margin-right: 10%;
+            display: flex;
+            justify-content: center;
         }
 
+        .desc_container {
+            max-width: 1200px;
+        }
 
         .slide {
+            max-width: 1200px;
             padding: 10px;
             display: flex;
-            flex-direction: row;
+            justify-content: space-between;
         }
 
         .people {
@@ -106,10 +112,42 @@
             height: 450px;
         }
 
-        @media ( max-width: 900px ) {
+        .title {
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size : 21px;
+        }
+
+        #picZero {
+            width: 600px;
+            display: flex;
+        }
+
+        .zeroContents {
+            width: 50%;
+            margin-left: 30px;
+            padding-top: 6%;
+            padding-bottom: 6%;"
+        }
+
+        @media ( max-width: 1600px ) {
+            .slide {
+            flex-direction: column;
+            margin: auto;
+            }
+            .zeroContents {
+                width: 600px;
+                margin: auto;
+            }
+        }
+
+
+        @media ( max-width: 950px ) {
             .about {
-                background-image: none;
-                height: 350px;
+            background-image: none;
+            height: 350px;
             }
         }
 
@@ -118,6 +156,60 @@
                 padding: 8%;
             }
         }
+
+        @media ( max-width: 650px ) {
+            #picZero {
+            width: 550px;
+            display: flex;
+            }
+            .zeroContents {
+                width: 500px;
+                margin: auto;
+            }
+        }
+
+        @media ( max-width: 550px ) {
+            #picZero {
+            width: 450px;
+            display: flex;
+            }
+            .zeroContents {
+                width: 400px;
+                margin: auto;
+            }
+        }
+
+        @media ( max-width: 450px ) {
+
+            #picZero {
+            width: 350px;
+            display: flex;
+            }
+            .zeroContents {
+                width: 300px;
+                margin: auto;
+            }
+        }
+
+        @media ( max-width: 420px ) {
+            .about {
+            background-image: none;
+            height: 380px;
+            }
+        }
+
+        @media ( max-width: 350px ) {
+            #picZero {
+            width: 250px;
+            display: flex;
+            }
+            .zeroContents {
+                width: 200px;
+                margin: auto;
+            }
+        }
+
+
 
 
     </style>
@@ -151,57 +243,55 @@
 <div style="background-color: #D8E2C8;" class="about">
     <div class="container-fluid">
         <div class="zero">
-            <h1 class="display-6 fw-bold">일상 속 제로 웨이스트</h1>
-            <h1 class="display-6 fw-bold" style="margin-bottom: 30px">대동여지도에서 시작해 보세요</h1>
-            <p class="col-md-9 fs-5" style="margin-bottom: 10px"><span><strong>지도는 우리의 삶을 반영합니다.</strong></span> 지도가 바뀌면
-                우리도 바뀔 수 있지 않을까요?</p>
-            <p class="col-md-9 fs-5">우리가 바뀌면 세상도 바뀝니다. 사소한 변화의 시작을 대동여지도가 함께 할게요.</p>
+            <h1 class="title">일상 속 제로 웨이스트</h1>
+            <h1 class="title" style="margin-bottom: 30px">대동여지도에서 시작해 보세요</h1>
+            <p class="subtitle" style="margin-bottom: 10px"><span><strong>지도는 우리의 삶을 반영합니다.</strong></span> 지도가 바뀌면 우리도 바뀔 수 있지 않을까요?</p>
+            <p class="subtitle">우리가 바뀌면 세상도 바뀝니다. 사소한 변화의 시작을 대동여지도가 함께 할게요.</p>
         </div>
     </div>
 </div>
-<div class="desc">
+<section class="desc">
+    <div class="desc_container">
     <h3 class="pb-2 border-bottom" style="margin-left: 20px">Q. 그래서 제로 웨이스트는 무엇인가요?</h3>
-    <div class="slide">
-        <div style="width: 55%;" id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://ifh.cc/g/6lRHWy.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://ifh.cc/g/6lRHWy.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://ifh.cc/g/6lRHWy.jpg" class="d-block w-100" alt="...">
+        <div class="slide">
+            <div id="picZero" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://ifh.cc/g/6lRHWy.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://ifh.cc/g/6lRHWy.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://ifh.cc/g/6lRHWy.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <div style="width: 50%; margin-left: 30px; margin-top: 6%" class="d-flex flex-column">
-            <h2 class="fw-bold">제로 웨이스트는 쓰레기 배출량을 줄이기 위한 모든 노력을 뜻해요.</h2>
-            <p class="text-muted" style="margin-top: 30px">제로 웨이스트(zero waste), 말 그대로 버리는 것이 없다는 의미로 일회용품 사용을 줄이고 생활용품을
-                재사용하여 쓰레기 배출량을 줄여나가는 것을 목표로 시작된 운동이에요. 거창하고 어려워 보이지만 아주 작은 실천만으로도 충분하답니다.</p>
-            <p><strong> 완벽히 실천하는 한 사람보다는 소소하게 지향하는 여러 사람이 세상이 흘러가는 방향을 바꾼다고 해요. 카페에 갈 때 텀블러를 잊지 않고 챙겨 나가거나 샴푸바를 사용해 본다거나
-                하는 작은 변화가 그 시작이 될 거예요. 서로가 서로에게 작은 실천을 제안하고 격려해야만 제로 웨이스트가 지속될 수 있어요. 대동여지도에서 유의미한 변화를 이어나가
-                보세요!</strong></p>
+            <div class="zeroContents">
+                <h2 class="fw-bold">제로 웨이스트는 쓰레기 배출량을 줄이기 위한 모든 노력을 뜻해요.</h2>
+                <p class="text-muted" style="margin-top: 30px">제로 웨이스트(zero waste), 말 그대로 버리는 것이 없다는 의미로 일회용품 사용을 줄이고 생활용품을 재사용하여 쓰레기 배출량을 줄여나가는 것을 목표로 시작된 운동이에요. 거창하고 어려워 보이지만 아주 작은 실천만으로도 충분하답니다.</p>
+                <p><strong> 완벽히 실천하는 한 사람보다는 소소하게 지향하는 여러 사람이 세상이 흘러가는 방향을 바꾼다고 해요. 카페에 갈 때 텀블러를 잊지 않고 챙겨 나가거나 샴푸바를 사용해 본다거나 하는 작은 변화가 그 시작이 될 거예요. 서로가 서로에게 작은 실천을 제안하고 격려해야만 제로 웨이스트가 지속될 수 있어요. 대동여지도에서 유의미한 변화를 이어나가 보세요!</strong></p>
+            </div>
         </div>
     </div>
-</div>
+</section>
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
-        <div class="col-lg-8 col-md-8 mx-auto">
+        <div class="col-lg-5 col-md-8 mx-auto">
             <h1 class="fw-light" style="margin-bottom: 20px">🧭</h1>
             <h2 class="fw-light">전국 제로 웨이스트 샵 안내 지도,</h2>
             <p class="lead">대동여지도 사용법</p>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="row row-cols-1 row-cols-md-1 g-4">
                 <div class="col">
                     <div class="card">
                         <img src="https://ifh.cc/g/55voFC.jpg" class="card-img-top" alt="...">
@@ -227,8 +317,8 @@
                         <img src="https://ifh.cc/g/s8nG1k.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">STEP 3</h5>
-                            <p class="card-text">마음에 들거나 가까이에 위치한 상점을 골라 방문해 보세요!</p>
-                            <p class="card-text">방문을 망설이고 있는 유저들을 위해 간단한 후기도 남겨 봐요.</p>
+                            <p class="card-text">마음에 들거나 가까이에 위치한 상점을 골라 방문해 보세요.</p>
+                            <p class="card-text">천연 수세미 하나를 사는 것만으로도 제로 웨이스트 시작!</p>
                         </div>
                     </div>
                 </div>
@@ -237,17 +327,26 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">STEP 4</h5>
+                            <p class="card-text">방문해 본 제로 웨이스트 상점은 어땠나요?</p>
+                            <p class="card-text">방문을 망설이고 있는 유저들을 위해 간단한 후기를 남겨 주세요.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">STEP 5</h5>
                             <p class="card-text">사소하지만 용기 있는 제로 웨이스트 실천을 공유해 주세요.</p>
-                            <p class="card-text">우리의 제로 웨이스트 실천이 모여 세상을 바꿀 거예요!</p>
+                            <p class="card-text">티끌 모아 태산, 우리의 제로 웨이스트 실천이 함께 모여 세상을 바꿀 거예요!</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <p></p>
-            <div class="btngo">
-                <a href="/" class="btn btn-primary my-2" style="margin-right: 10px">지도로 바로 가기</a>
-                <a href="/board" class="btn btn-secondary my-2">커뮤니티에 글 남기기</a>
-            </div>
+        <p></p>
+        <div class="btngo">
+            <a href="/" class="btn btn-primary my-2" style="margin-right: 10px">지도로 바로 가기</a>
+            <a href="/board" class="btn btn-secondary my-2">커뮤니티에 글 남기기</a>
         </div>
 </section>
 <div class="myteam">
