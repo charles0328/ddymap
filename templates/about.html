@@ -103,13 +103,23 @@
             background-image: url("https://ifh.cc/g/p0QSoo.png");
             background-position: center;
             background-repeat: no-repeat;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            min-height: 300px;
             height: 450px;
         }
+
+        @media ( max-width: 900px ) {
+            .about {
+            background-image: none;
+            height: 350px;
+            }
+        }
+
+        @media ( max-width: 767px ) {
+            .zero {
+                padding: 8%;
+            }
+        }
+
+
 
     </style>
 </head>
@@ -139,8 +149,8 @@
 {#<div class="mytitle">#}
 {#    <h1 class="mypage">About Us</h1>#}
 {#</div>#}
-<div style="background-color: #D8E2C8; margin-top: 20px" class="about">
-    <div class="container-fluid py-5">
+<div style="background-color: #D8E2C8;" class="about">
+    <div class="container-fluid">
         <div class="zero">
             <h1 class="display-6 fw-bold">일상 속 제로 웨이스트</h1>
             <h1 class="display-6 fw-bold" style="margin-bottom: 30px">대동여지도에서 시작해 보세요</h1>
