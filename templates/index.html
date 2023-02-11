@@ -235,32 +235,34 @@
 <body>
 
 <!-- HTML for Horizontal Menu -->
-<nav style="margin-left: 2%" class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <a href="/">
-            <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/board">커뮤니티</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About Us</a>
-                </li>
-            </ul>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a href="/">
+                <img src={{ url_for('static', filename='images/logo.png') }} alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/board">커뮤니티</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="width: 350px; margin-right: 10px" class="alert alert-warning alert-dismissible fade show"
+                 role="alert">
+                <strong>📍 현재 서울 지역만 서비스 중에 있어요.</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         </div>
-        <div style="width: 350px; margin-right: 10px" class="alert alert-warning alert-dismissible fade show"
-             role="alert">
-            <strong>📍 현재 서울 지역만 서비스 중에 있어요.</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-</nav>
+    </nav>
+</div>
 <div id="mapwrap">
     <!-- 지도가 표시될 div -->
     <div id="map" style="width:100%;height:1000px;"></div>
