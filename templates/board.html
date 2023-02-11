@@ -45,9 +45,9 @@
         }
 
         .mymessage {
-            background-image: url("https://ifh.cc/g/r6xKPX.png");
+            background-image: url("https://ifh.cc/g/Z9kqs2.png");
             background-position: center center;
-            background-size: 1000px auto;
+            background-size: 800px auto;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
@@ -68,7 +68,6 @@
             border-radius: 50px;
             border: 0px solid black;
 
-            margin-top: 30px;
         }
 
         .mytitle > button:hover {
@@ -173,47 +172,47 @@
         }
 
         {#게시물 검색 함수#}
-{##}
-{#        function search_card() {#}
-{#            $('#card-box').empty()#}
-{#            let search = $('#searchTerm').val();#}
-{#            console.log(search)#}
-{##}
-{#            $.ajax({#}
-{#                type: 'GET',#}
-{#                url: `/board/regist?search=${search}`,#}
-{#                data: {'search': search},#}
-{#                success: function (response) {#}
-{#                    let rows = response['searches']#}
-{#                    console.log(rows)#}
-{##}
-{#                    for (let i = 0; i < rows.length; i++) {#}
-{#                        let nickname = rows[i]['nickname']#}
-{#                        let title = rows[i]['title']#}
-{#                        let content = rows[i]['content']#}
-{#                        let num = rows[i]['num']#}
-{#                        let url = rows[i]['url']#}
-{#                        let radio = rows[i]['radio']#}
-{##}
-{#                        let temp_html = `<div class="card mb-3" style="width: 100%;">#}
-{#                                            <div class="row g-1">#}
-{#                                                <img style="object-fit: cover; width: 35%" src="${url}" onerror= "this.onerror=null; this.src='https://i.pinimg.com/564x/df/9c/f6/df9cf66c6ecc4574a166496ea11a5352.jpg';">#}
-{#                                                <div style="margin-left: 10px; width: 60%; margin-top: 5%; " class="card-body">#}
-{#                                                    <p>${radio}</p>#}
-{#                                                    <h5 class="card-title">${title}</h5>#}
-{#                                                    <p class="card-text">${content}</p>#}
-{#                                                    <p class="card-text"><small class="text-muted">${nickname}</small></p>#}
-{#                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">#}
-{#                                                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>`#}
-{#                        $('#card-box').append(temp_html)#}
-{#                    }#}
-{#                }#}
-{#            });#}
-{#        }#}
+        {##}
+        {#        function search_card() {#}
+        {#            $('#card-box').empty()#}
+        {#            let search = $('#searchTerm').val();#}
+        {#            console.log(search)#}
+        {##}
+        {#            $.ajax({#}
+        {#                type: 'GET',#}
+        {#                url: `/board/regist?search=${search}`,#}
+        {#                data: {'search': search},#}
+        {#                success: function (response) {#}
+        {#                    let rows = response['searches']#}
+        {#                    console.log(rows)#}
+        {##}
+        {#                    for (let i = 0; i < rows.length; i++) {#}
+        {#                        let nickname = rows[i]['nickname']#}
+        {#                        let title = rows[i]['title']#}
+        {#                        let content = rows[i]['content']#}
+        {#                        let num = rows[i]['num']#}
+        {#                        let url = rows[i]['url']#}
+        {#                        let radio = rows[i]['radio']#}
+        {##}
+        {#                        let temp_html = `<div class="card mb-3" style="width: 100%;">#}
+        {#                                            <div class="row g-1">#}
+        {#                                                <img style="object-fit: cover; width: 35%" src="${url}" onerror= "this.onerror=null; this.src='https://i.pinimg.com/564x/df/9c/f6/df9cf66c6ecc4574a166496ea11a5352.jpg';">#}
+        {#                                                <div style="margin-left: 10px; width: 60%; margin-top: 5%; " class="card-body">#}
+        {#                                                    <p>${radio}</p>#}
+        {#                                                    <h5 class="card-title">${title}</h5>#}
+        {#                                                    <p class="card-text">${content}</p>#}
+        {#                                                    <p class="card-text"><small class="text-muted">${nickname}</small></p>#}
+        {#                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">#}
+        {#                                                        <button onclick="delete_card(${num})" class="btn btn-secondary btn-sm" type="button">삭제</button>#}
+        {#                                                    </div>#}
+        {#                                                </div>#}
+        {#                                            </div>#}
+        {#                                        </div>`#}
+        {#                        $('#card-box').append(temp_html)#}
+        {#                    }#}
+        {#                }#}
+        {#            });#}
+        {#        }#}
 
 
         {#게시물 DB 저장 함수#}
@@ -366,9 +365,10 @@
 
 {#게시물 작성 안내#}
 <div class="mymessage">
-    <h3>제로 웨이스트를 실천하는 나만의 방법을 알려 주세요!</h3>
+    <h3>오늘은 덜 버리기 위해 어떤 노력을 하셨나요?</h3>
     <p></p>
-    <h5>🔊 이제는 일상이 된 나만의 팁을 공유해주세요</h5>
+    <p>제로 웨이스트 상점 방문 후기부터 소소한 쓰레기를 줄이는 팁까지,</p>
+    <p>대동여지도에서 함께 나눠요.</p>
     <button onclick="open_box()">글쓰기</button>
 </div>
 
@@ -383,9 +383,9 @@
                 </label>
             </div>
             <div class="form-check">
-                <input value="함께해요" class="form-check-input" type="radio" name="radio" id="radioButton2">
+                <input value="함께 해요" class="form-check-input" type="radio" name="radio" id="radioButton2">
                 <label class="form-check-label" for="radioButton22">
-                    함께해요
+                    함께 해요
                 </label>
             </div>
         </div>
@@ -420,10 +420,11 @@
 <div class="allpost">
     <div class="mysearch">
         <p style="min-width: 150px; max-height: 10px; margin-left: 10px">전체 게시글 ({{ count }})</p>
-        <select onchange="select_card()" name="selectform" id="selectform" class="form-select form-select-sm" aria-label=".form-select-sm example">
+        <select onchange="select_card()" name="selectform" id="selectform" class="form-select form-select-sm"
+                aria-label=".form-select-sm example">
             <option selected>Open this select menu</option>
-            <option value="상점 방문 후기">같이 가요</option>
-            <option value="꿀팁 공유">함께해요</option>
+            <option value="같이 가요">같이 가요</option>
+            <option value="함께 해요">함께 해요</option>
         </select>
     </div>
     <hr align="left" style="border: 1.5px;">

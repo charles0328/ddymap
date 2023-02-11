@@ -134,7 +134,7 @@ def load_data():
     cards_list = list(db.board.find({'radio': selected_option}, {'_id': False}))
     print(cards_list)
 
-    return jsonify({'card_list': cards_list})
+    return jsonify({'cards': cards_list})
 
 
 # 게시물 삭제
